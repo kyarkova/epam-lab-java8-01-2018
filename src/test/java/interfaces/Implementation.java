@@ -16,11 +16,24 @@ public class Implementation implements First, Second {
 
 
     public static void main(String[] args) {
-        System.out.println(new Implementation().getValue());
+        Implementation implementation = new Implementation();
+        System.out.println(implementation.getValueFromFirst());
+        System.out.println(implementation.getValueFromSecond());
+        System.out.println(implementation.getValue());
+    }
+
+    @Override
+    public int getValueFromFirst() {
+        return 1;
     }
 
     @Override
     public int getValue() {
         return 0;
+    }
+
+    @Override
+    public int getValueFromSecond() {
+        return 2;
     }
 }

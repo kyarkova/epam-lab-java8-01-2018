@@ -39,10 +39,11 @@ class Child2 extends Child1 implements A {
 class ChildExample4 extends Example4 implements A {
 
     public static void main(String[] args) {
-//        ChildExample4 object = new ChildExample4();
-//        System.out.println(object.getValue());
+        ChildExample4 object = new ChildExample4();
+        System.out.println(object.getValue());
+
+
         Child2 child1 = new Child2();
         System.out.println(child1.getValue());
-
     }
 }

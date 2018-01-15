@@ -33,24 +33,27 @@ class GrandChild extends Child {
 class Launcher1 {
 
     public static void main(String[] args) {
+        // Parent - 42
+        // Child - 0
+        // GrandChild - -42
         Parent parent = new Parent();
         System.out.println("--- Parent ---");
-        System.out.println(parent.getValue());
-        System.out.println(Parent.getValue());
+        System.out.println(parent.getValue()); // 42
+        System.out.println(Parent.getValue()); // 42
 
         parent = new Child();
         System.out.println("\n--- Child ---");
-        System.out.println(parent.getValue());
-        System.out.println(Child.getValue());
+        System.out.println(parent.getValue()); // 42
+        System.out.println(Child.getValue());  // 0
 
         parent = new GrandChild();
         System.out.println("\n--- GrandChild ---");
-        System.out.println(parent.getValue());
-        System.out.println(GrandChild.getValue());
+        System.out.println(parent.getValue());     // 42
+        System.out.println(GrandChild.getValue()); // 0
 
         parent = null;
         System.out.println("\n--- null ---");
-        System.out.println(parent.getValue());
-        System.out.println(((GrandChild)null).getValue());
+        System.out.println(parent.getValue());              // 42
+        System.out.println(((GrandChild)null).getValue());  // 0
     }
 }

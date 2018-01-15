@@ -42,10 +42,11 @@ class Launcher2 {
 
         Left left = grandGrandChild;
 //        System.out.println(left.getValue());
-//        System.out.println(Left.getValue());
-//        System.out.println(Left.value);
+        System.out.println(Left.getValue());
+        System.out.println(Left.value);
 
-//        Right right = grandGrandChild;
+        Right right = grandGrandChild;
 //        System.out.println(right.getValue());
+        System.out.println(Right.getValue());
     }
 }
