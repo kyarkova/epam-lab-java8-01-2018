@@ -1,6 +1,5 @@
 package generics;
 
-import lombok.Data;
 import lombok.SneakyThrows;
 
 import java.lang.reflect.ParameterizedType;
@@ -31,10 +30,24 @@ public class Example1 {
         System.out.println(nonStaticMethodReturnType.getActualTypeArguments()[0]);
     }
 
-    @Data
+
     private static class Pair<T1, T2> {
+
         private final T1 first;
         private final T2 second;
+
+        private Pair(T1 first, T2 second) {
+            this.first = first;
+            this.second = second;
+        }
+
+        public T1 getFirst() {
+            return first;
+        }
+
+        public T2 getSecond() {
+            return second;
+        }
     }
 
     private static class IndexedString extends Pair<Integer, String> {
