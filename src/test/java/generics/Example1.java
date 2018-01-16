@@ -53,6 +53,4 @@ public class Example1 {
             return Collections.singletonList(this);
         }
     }
-
-
 }
