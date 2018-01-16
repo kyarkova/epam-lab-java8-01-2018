@@ -8,7 +8,9 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-
+/**
+ * @see <a href="https://youtu.be/mNyQYTp-Njw">Александр Маторин - Неочевидные дженерики</a>
+ */
 public class Example1 {
 
     @SneakyThrows
