@@ -16,17 +16,17 @@ import static org.junit.Assert.assertEquals;
 public class Example1 {
 
     @Test
-    public void sortPersonsByNameUsingArraysSortComparator() {
+    public void sortPersonsByNameUsingArraysSortUsingLocalComparator() {
         Person[] persons = getPersons();
 
-        Comparator<Person> comparatorByLastName = new Comparator<Person>() {
+        class LastNameComparator implements Comparator<Person> {
             @Override
             public int compare(Person left, Person right) {
                 // FIXME потенциальная ошибка
                 return left.getLastName().compareTo(right.getLastName());
             }
-        };
-        Arrays.sort(persons, comparatorByLastName);
+        }
+        Arrays.sort(persons, new LastNameComparator());
 
         assertArrayEquals(new Person[]{
             new Person("Алексей", "Доренко", 40),
@@ -37,7 +37,7 @@ public class Example1 {
 
 
     @Test
-    public void sortPersonsByNameUsingArraysSortAnonymousComparator() {
+    public void sortPersonsByNameUsingArraysSortUsingAnonymousComparator() {
         Person[] persons = getPersons();
 
         Arrays.sort(persons, new Comparator<Person>() {
@@ -85,8 +85,8 @@ public class Example1 {
 
         Predicate<Person> isFirstNameAlexChecker = new Predicate<Person>() {
             @Override
-            public boolean apply(Person p) {
-                return "Алексей".equals(p.getFirstName());
+            public boolean apply(Person person) {
+                return "Алексей".equals(person.getFirstName());
             }
         };
         Optional<Person> personOptional = FluentIterable.from(persons)
