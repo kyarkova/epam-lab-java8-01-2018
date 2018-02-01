@@ -53,8 +53,7 @@ public class Exercise1 {
         String result = employees.stream()
                                  .map(e ->e.getPerson()
                                            .getFullName())
-                                 .collect(Collectors.joining("\n"))
-                                 .concat("");
+                                 .collect(Collectors.joining("\n"));
 
         assertEquals("Иван Мельников\n"
                    + "Александр Дементьев\n"
