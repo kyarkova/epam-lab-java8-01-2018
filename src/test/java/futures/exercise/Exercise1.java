@@ -5,14 +5,9 @@ import lambda.data.Person;
 import lombok.SneakyThrows;
 import org.junit.Test;
 
-import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.Collections;
-import java.util.concurrent.Callable;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 import static java.lang.System.lineSeparator;
 import static org.junit.Assert.assertEquals;
@@ -23,10 +18,9 @@ public class Exercise1 {
     @Test
     public void vanillaFutureExample() throws Exception {
         test(() -> {
-            Employee result = null;
-
-            // TODO использовать Executors.newFixedThreadPool(4), Future<T> и метод getEmployee: Person -> Employee
-
+            ExecutorService executorService = Executors.newFixedThreadPool(4);
+            Future<Employee> future = executorService.submit(() -> getEmployee(getPerson("Дмитрий", "Сашков")));
+            Employee result = future.get();
             return result;
         });
     }
@@ -34,10 +28,9 @@ public class Exercise1 {
     @Test
     public void completableFutureExample() throws Exception {
         test(() -> {
-            Employee result = null;
-
-            // TODO использовать CompletableFuture<T> и метод getEmployeeInFuture: Person -> CompletableFuture<Employee>
-
+            ExecutorService executorService = Executors.newFixedThreadPool(4);
+            CompletableFuture<Employee> cf = getEmployeeInFuture(getPerson("Дмитрий", "Сашков"));
+            Employee result = cf.get();
             return result;
         });
     }
@@ -47,7 +40,7 @@ public class Exercise1 {
 
         Employee actual = performWithCustomSystemIn(task, input);
 
-        assertEquals(new Employee(new Person("Дмитрий", "Сашков", 24), Collections.emptyList()), actual);
+        assertEquals(new Employee(new Person("Дмитрий", "Сашков", 25), Collections.emptyList()), actual);
     }
 
     private static <T> T performWithCustomSystemIn(Callable<T> task, InputStream input) throws Exception {
@@ -86,10 +79,10 @@ public class Exercise1 {
 
     // TODO использовать в completableFutureExample
     @SneakyThrows
-    private static CompletableFuture<Employee> getEmployeeInFuture(Person person) {
+    private static CompletableFuture<Employee> getEmployeeInFuture(Person person) throws InterruptedException {
         Employee employee;
         TimeUnit.SECONDS.sleep(2);
         // For example load from another service
-        throw new UnsupportedOperationException();
+        return CompletableFuture.completedFuture(getEmployee(person));
     }
 }
